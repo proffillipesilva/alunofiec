@@ -1,6 +1,6 @@
 package com.fiec.alunofiec.controllers;
 
-import com.fiec.alunofiec.models.Aluno;
+import com.fiec.alunofiec.business.models.Aluno;
 import com.fiec.alunofiec.services.IAlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

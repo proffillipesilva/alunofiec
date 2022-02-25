@@ -1,7 +1,7 @@
 package com.fiec.alunofiec.services;
 
 
-import com.fiec.alunofiec.models.Aluno;
+import com.fiec.alunofiec.business.models.Aluno;
 
 import java.util.List;
 
