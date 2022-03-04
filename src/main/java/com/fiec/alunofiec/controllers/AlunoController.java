@@ -3,9 +3,7 @@ package com.fiec.alunofiec.controllers;
 import com.fiec.alunofiec.business.models.Aluno;
 import com.fiec.alunofiec.services.IAlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +22,11 @@ public class AlunoController {
     @GetMapping
     public List<Aluno> getAlunos(){
         return alunoService.getAlunos();
+    }
+
+    @PostMapping
+    public void saveAluno(@RequestBody Aluno aluno){
+        alunoService.saveAluno(aluno);
     }
 
 

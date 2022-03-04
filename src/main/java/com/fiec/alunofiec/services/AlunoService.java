@@ -26,4 +26,9 @@ public class AlunoService implements IAlunoService{
         return alunoRepositorio.findAll();
 
     }
+
+    @Override
+    public void saveAluno(Aluno aluno) {
+        alunoRepositorio.save(aluno);
+    }
 }

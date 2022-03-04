@@ -10,4 +10,6 @@ public interface IAlunoService {
     Aluno alunoExemplo();
 
     List<Aluno> getAlunos();
+
+    void saveAluno(Aluno aluno);
 }
