@@ -7,9 +7,13 @@ import java.util.List;
 
 public interface IAlunoService {
 
-    Aluno alunoExemplo();
-
     List<Aluno> getAlunos();
 
     void saveAluno(Aluno aluno);
+
+    void atualizaAluno(Aluno aluno, String id);
+
+    Aluno pegaAluno(String id);
+
+    void deletaAluno(String id);
 }
