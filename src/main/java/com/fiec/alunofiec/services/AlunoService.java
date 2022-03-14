@@ -17,9 +17,7 @@ public class AlunoService implements IAlunoService{
     @Override
     public List<Aluno> getAlunos() {
 
-        List<Aluno> alunos = new ArrayList<>();
-        alunoRepositorio.findAll().forEach(alunos::add);
-        return alunos;
+        return alunoRepositorio.findAll();
 
     }
 
