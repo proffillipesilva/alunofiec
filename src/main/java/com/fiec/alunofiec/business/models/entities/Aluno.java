@@ -1,4 +1,4 @@
-package com.fiec.alunofiec.business.models;
+package com.fiec.alunofiec.business.models.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

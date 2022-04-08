@@ -1,11 +1,10 @@
 package com.fiec.alunofiec.services;
 
-import com.fiec.alunofiec.business.models.Aluno;
+import com.fiec.alunofiec.business.models.entities.Aluno;
 import com.fiec.alunofiec.business.repositories.IAlunoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

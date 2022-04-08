@@ -1,6 +1,6 @@
 package com.fiec.alunofiec.business.repositories;
 
-import com.fiec.alunofiec.business.models.Aluno;
+import com.fiec.alunofiec.business.models.entities.Aluno;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

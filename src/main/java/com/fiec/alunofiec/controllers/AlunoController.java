@@ -1,8 +1,7 @@
 package com.fiec.alunofiec.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fiec.alunofiec.business.models.Aluno;
+import com.fiec.alunofiec.business.models.entities.Aluno;
 import com.fiec.alunofiec.services.IAlunoService;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Autowired;
