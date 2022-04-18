@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface IAlunoRepositorio extends JpaRepository<Aluno, String> {
 
-    List<Aluno> findByNomeAndCurso(String nome, String curso);
 }

@@ -56,7 +56,7 @@ public class AlunoController {
         Aluno novoAluno = objectMapper.readValue(aluno, Aluno.class);
 
         String profileImage = UUID.randomUUID() + "_" + Long.toHexString(new Date().getTime());
-        novoAluno.setProfileImage(profileImage + ".jpg");
+        novoAluno.getUser().setProfileImage(profileImage + ".jpg");
         alunoService.saveAluno(novoAluno);
 
         Path filename = Paths.get("uploads").resolve(profileImage);

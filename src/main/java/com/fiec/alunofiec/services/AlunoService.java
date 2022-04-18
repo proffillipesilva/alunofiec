@@ -30,9 +30,7 @@ public class AlunoService implements IAlunoService{
 
         Aluno alunoAnterior = alunoRepositorio.findById(id).orElse(null);
         alunoAnterior.setRm(aluno.getRm());
-        alunoAnterior.setNome(aluno.getNome());
         alunoAnterior.setCurso(aluno.getCurso());
-        alunoAnterior.setProfileImage(aluno.getProfileImage());
         alunoRepositorio.save(alunoAnterior);
 
     }

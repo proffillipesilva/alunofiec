@@ -25,7 +25,10 @@ public class Aluno implements Serializable {
     private String id;
     @Column(unique = true)
     private int rm;
-    private String nome;
     private String curso;
-    private String profileImage;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
 }
