@@ -22,7 +22,9 @@ public class AlunoService implements IAlunoService{
 
     @Override
     public void saveAluno(Aluno aluno) {
+
         alunoRepositorio.save(aluno);
+
     }
 
     @Override
