@@ -61,7 +61,7 @@ public class AuthController {
     public TokenResponse autenticaUsuariocomGoogle(@RequestBody GoogleAuthRequest googleAuthRequest) throws Exception {
         HttpTransport httpTransport = new NetHttpTransport();
         JsonFactory jsonFactory = new GsonFactory();
-        String clientId = <seuClientId>;
+        String clientId = "277380091468-1pe2je91eas7almtof0bf0bfhmehbvgi.apps.googleusercontent.com";
 
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(httpTransport, jsonFactory)
                 .setAudience(Collections.singletonList(clientId))

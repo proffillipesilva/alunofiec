@@ -31,6 +31,8 @@ public class User implements UserDetails {
 
     private String profileImage;
 
+    private String fcmToken;
+
 
 
     @Override
