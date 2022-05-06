@@ -3,6 +3,8 @@ package com.fiec.alunofiec.services;
 import com.fiec.alunofiec.business.models.entities.Aluno;
 import com.fiec.alunofiec.business.repositories.IAlunoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,10 +16,10 @@ public class AlunoService implements IAlunoService{
     IAlunoRepositorio alunoRepositorio;
 
     @Override
-    public List<Aluno> getAlunos() {
+    public Page<Aluno> getAlunos(int page, int pageSize) {
 
-        return alunoRepositorio.findAll();
-
+        Page<Aluno> alunos =  alunoRepositorio.findAll(PageRequest.of(page, pageSize));
+        return alunos;
     }
 
     @Override
