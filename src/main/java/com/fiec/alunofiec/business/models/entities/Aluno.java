@@ -8,6 +8,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -31,4 +33,7 @@ public class Aluno implements Serializable {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @ManyToMany
+    @JoinTable(name = "tb_cursa", joinColumns = {@JoinColumn(name = "aluno_id")}, inverseJoinColumns = {@JoinColumn(name = "materia_id")} )
+    private List<Materia> materias = new ArrayList<>();
 }

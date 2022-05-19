@@ -20,7 +20,7 @@ public class AlunofiecApplication {
 		try {
 			Files.createDirectory(Paths.get("uploads"));
 		} catch (IOException e) {
-			e.printStackTrace();
+
 		}
 	}
 

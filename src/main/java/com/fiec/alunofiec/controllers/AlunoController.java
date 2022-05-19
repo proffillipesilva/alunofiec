@@ -2,6 +2,7 @@ package com.fiec.alunofiec.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fiec.alunofiec.business.models.dto.AlunoResponse;
+import com.fiec.alunofiec.business.models.dto.CreateAlunoRequest;
 import com.fiec.alunofiec.business.models.dto.PageAlunoResponse;
 import com.fiec.alunofiec.business.models.dto.RequisicaoAluno;
 import com.fiec.alunofiec.business.models.entities.Aluno;
@@ -10,6 +11,7 @@ import com.fiec.alunofiec.business.repositories.IUserRepositorio;
 import com.fiec.alunofiec.services.IAlunoService;
 import com.fiec.alunofiec.services.JwtUserDetailsService;
 import net.coobird.thumbnailator.Thumbnails;
+import org.apache.http.HttpException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
@@ -21,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.GeneralSecurityException;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -53,8 +56,8 @@ public class AlunoController {
     }
 
     @PostMapping
-    public void saveAluno(@RequestBody Aluno aluno){
-        alunoService.saveAluno(aluno);
+    public void saveAluno(@RequestBody CreateAlunoRequest createAlunoRequest) throws GeneralSecurityException, HttpException, IOException {
+        alunoService.saveAluno(createAlunoRequest);
     }
 
     @GetMapping("/{alunoId}")
@@ -73,20 +76,12 @@ public class AlunoController {
         alunoService.deletaAluno(id);
     }
 
-    @PostMapping(value = "/comFoto",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void saveAlunoComFoto(@RequestParam("aluno") String aluno, @RequestParam("foto") MultipartFile file) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        RequisicaoAluno requisicaoAluno = objectMapper.readValue(aluno, RequisicaoAluno.class);
-        Aluno novoAluno = new Aluno();
-        novoAluno.setCurso(requisicaoAluno.getCurso());
-        novoAluno.setRm(Integer.parseInt(requisicaoAluno.getRm()));
-        User user = userRepositorio.findByEmail(requisicaoAluno.getEmail()).orElse(null);
-        user.setNome(requisicaoAluno.getNome());
-        novoAluno.setUser(user);
+    @PostMapping(value = "/photo",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void saveAlunoComFoto(@RequestParam("aluno") String alunoId, @RequestParam("foto") MultipartFile file) throws IOException {
+        Aluno aluno = alunoService.pegaAluno(alunoId);
         String profileImage = UUID.randomUUID() + "_" + Long.toHexString(new Date().getTime());
-        novoAluno.getUser().setProfileImage(profileImage + ".jpg");
-        alunoService.saveAluno(novoAluno);
-
+        aluno.getUser().setProfileImage(profileImage + ".jpg");
+        //alunoService.saveAluno(novoAluno);
         Path filename = Paths.get("uploads").resolve(profileImage);
 
         Path thumbFilename = Paths.get("uploads").resolve("thumb_" + profileImage);
@@ -98,6 +93,8 @@ public class AlunoController {
                 .size(100, 100)
                 .outputFormat("jpg")
                 .toFile(new File(thumbFilename.toString()));
+
+        alunoService.atualizaAluno(aluno, alunoId);
 
 
     }
