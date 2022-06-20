@@ -7,37 +7,28 @@ import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
-
-@Entity
-@Table(name = "tb_alunos")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class Aluno implements Serializable {
+@Entity
+@Table(name = "tb_materias")
+public class Materia {
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @ToString.Exclude
-    private String id;
-    @Column(unique = true)
-    private int rm;
-    private String curso;
+    private String materiaId;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private String nome;
 
     @ManyToMany
     @JoinTable(name = "tb_cursa", joinColumns = {
-            @JoinColumn(name = "aluno_id")
-    }, inverseJoinColumns = {
             @JoinColumn(name = "materia_id")
+    }, inverseJoinColumns = {
+            @JoinColumn(name = "aluno_id")
     })
-    List<Materia> materias;
-
+    List<Aluno> alunos;
 }
